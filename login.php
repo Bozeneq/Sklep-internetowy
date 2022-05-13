@@ -41,53 +41,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bzynoland</title>
-    <style>
-        #border{
-            width: 60%;
-            padding-left: 20%;
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111;
-        }
-        li div {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 2;
-        }
-        #loged{
-            float: right;
-        }
-        input, h3, form{
-            text-align: center;
-        }
-        #wyslij{
-            margin: 5px;
-        }
-    </style>
+    <title>D&D Cave</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="border">
@@ -108,6 +63,7 @@
 
                     <li>
             </ul>
+            <h1>Zaloguj</h1>
             <form action="login.php" method="post">
                 <h3>Login</h3>
                 <input type="text" name="login"><br>
