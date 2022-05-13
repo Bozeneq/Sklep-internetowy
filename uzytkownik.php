@@ -1,18 +1,3 @@
-<?php
-
-    session_start();
-
-    if(!isset($_SESSION["zalogowany"])) {
-        header("Location: login.php");
-        exit();
-    } else {
-        unset($_SESSION["zalogowany"]);
-        session_destroy();
-    }
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bzynoland</title>
     <style>
+        th, td{
+            padding: 5px;
+            border: solid black 1px;
+        }
+        table{
+            
+            border-collapse:collapse;
+        }
         #border{
             width: 60%;
             padding-left: 20%;
@@ -80,8 +73,31 @@
 
                     <li>
             </ul>
-            <p>Nastąpiło wylogowanie</p>
-            <a href="glowna.php">Strona główna</a>
+            <a href="glowna.php">Powrót</a>
+            <h1>Zamówienia</h1>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                </tr>
+                <?php
+                    $conn = new mysqli("localhost", "root", "", "sklep3ptp");
+                    session_start();
+                    $query = "SELECT * FROM orders WHERE user_id IN (SELECT user_id FROM users WHERE login='".$_SESSION['zalogowany']."')";
+                    $result = $conn->query($query);
+
+                    while($row = $result->fetch_object()){
+                        echo "
+                        <tr>
+                            <td>".$row->order_id."</td>
+                            <td>".$row->status."</td>
+                            <td>".$row->data."</td>
+                        <tr>
+                        ";
+                    }
+                ?>
+            </table>
     </div>
 </body>
 </html>
