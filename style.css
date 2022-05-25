@@ -1,15 +1,14 @@
 html{
         background-color:#f2d9fa;
         color: white;
+        height: 100%;
 }
 #border{
     padding-left: 15%;
-    height: 1000px;
 }
 #site{
     width: 80%;
     background: #5d446e;
-    height: 100%;
 }
 
 ul {

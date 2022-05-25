@@ -17,9 +17,10 @@
     if(isset($_POST["new"])){
         $value = number_format($_POST['price'], 2);
         $query = "INSERT INTO products (product_id, product, description, price) VALUES (NULL, '".$_POST['product']."', '".$_POST['description']."', ".$value.")";
-        $conn->query($query);
+        $result = $conn->query($query);
+        echo $result;
 
-        $query = "SELECT product_id FROM products WHERE product = '".$_POST['product']."'";
+        $query = "SELECT product_id FROM products ORDER BY product_id DESC LIMIT 1";
         $result = $conn->query($query);
         $id = $result->fetch_object();
 
@@ -86,11 +87,11 @@
                 }
             ?>
             <h2>Dodaj przedmiot</h2>
-                <form action="admin.php" method="post">
+                <form action="admin.php" method="POST" id="addForm">
                     <h3>Nazwa produktu</h3>
                     <input type="text" name="product"><br>
                     <h3>Opis produktu</h3> 
-                    <input type="text" name="description"><br>
+                    <textarea name="description" form="addForm"></textarea>
                     <h3>Cena (pln)</h3> 
                     <input type="number" name="price" step="0.01"><br>
                     <h3>Kategorie</h3>
@@ -106,6 +107,45 @@
                         ?>
                     <input type="submit" value="Utwórz" id="wyslij" name="new">
                 </form>
+            <h2>Przedmioty</h2>
+                <table>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Opis</th>
+                        <th>Cena</th>
+                        <th>Kategorie</th>
+                        <th>Opcje</th>
+                    </tr>
+                        <?php
+                        
+                        $query = "SELECT * FROM products";
+                        $result = $conn->query($query);
+
+                        while($row = $result->fetch_object()){
+                            echo "<tr>
+                                <td>".$row->product."</td>
+                                <td>".$row->description."</td>
+                                <td>".$row->price."</td>
+                                <td>";
+
+                            $query = "SELECT * FROM product_cat LEFT JOIN categories USING(category_id) WHERE product_id = ".$row->product_id;
+                            $result2 = $conn->query($query);
+                            echo "|";
+                            while($cats = $result2->fetch_object()){
+                                echo $cats->category."|";
+                            }
+                            
+                            
+                            echo"</td>
+                                <td>
+                                    <button>Edytuj</button>
+                                    <button>Dodaj kategorię</button>
+                                    <button>Usuń</button>
+                                </td>
+                            </tr>";
+                        }
+                        ?>
+                </table>
         </div>
     </div>
 </body>
