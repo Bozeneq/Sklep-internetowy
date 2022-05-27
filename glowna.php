@@ -10,13 +10,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D&D Cave</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
     <div id="border">
         <div id="site">
             <ul>
                 <li><a href="glowna.php">Główna</a></li>
+                <?php
+                    $query = "SELECT * FROM categories";
+                    $result = $conn->query($query);
+                    while($row = $result->fetch_object()){
+                        echo "<li><a href='glowna.php?category=".$row->category_id."'>".$row->category."</a></li>";
+                    }
+                ?>
+
                 <li id="loged" class="dropdown">
 
                     <?php 
@@ -28,12 +36,14 @@
                         $row = $result->fetch_object();
                         if($row->admin == 1){
                             echo "<div class='dropdown-content'>
+                            <a href='koszyk.php'>Koszyk</a>
                             <a href='uzytkownik.php'>Ustawienia użytkownika</a>
                             <a href='admin.php'>Panel administracyjny</a>
                             <a href='wyloguj.php'>Wyloguj</a>
                             </div>";
                         } else {
                             echo "<div class='dropdown-content'>
+                            <a href='koszyk.php'>Koszyk</a>
                             <a href='uzytkownik.php'>Ustawienia użytkownika</a>
                             <a href='wyloguj.php'>Wyloguj</a>
                             </div>";
@@ -48,6 +58,53 @@
                 </li>
             </ul>
             <h1>Sklep internetowy D&D Cave</h1>
+
+            <?php
+            
+                if(isset($_GET['category'])){
+                    $query = "SELECT * FROM product_cat LEFT JOIN products USING(product_id) WHERE category_id = ".$_GET['category'];
+                    $result = $conn->query($query);
+                    while($row = $result->fetch_object()){
+                        echo "<table class='product'>
+                            <tr>
+                                <td><h2>".$row->product."</h2></td>
+                                <td></td>
+                                <td><button>Do koszyka</button></td>
+                            </tr>
+                            <tr>
+                                <td><h3>".$row->price."zł</h3></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>".$row->description."</td>
+                            </tr>
+                        </table>";
+                    }
+                }
+                else{
+                    $query = "SELECT * FROM products";
+                    $result = $conn->query($query);
+                    while($row = $result->fetch_object()){
+                        echo "<table class='product'>
+                            <tr>
+                                <td><h2>".$row->product."</h2></td>
+                                <td></td>
+                                <td><button>Do koszyka</button></td>
+                            </tr>
+                            <tr>
+                                <td><h3>".$row->price."zł</h3></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>".$row->description."</td>
+                            </tr>
+                        </table>";
+                    }
+                }
+            
+            ?>
         </div>
     </div>
 </body>

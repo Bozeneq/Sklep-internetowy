@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<div id="border">
+    <div id="border">
         <div id="site">
             <ul>
                 <li><a href="glowna.php">Główna</a></li>
@@ -35,7 +35,6 @@
                             </div>";
                         } else {
                             echo "<div class='dropdown-content'>
-                            <a href='koszyk.php'>Koszyk</a>
                             <a href='uzytkownik.php'>Ustawienia użytkownika</a>
                             <a href='wyloguj.php'>Wyloguj</a>
                             </div>";
@@ -49,29 +48,7 @@
 
                 </li>
             </ul>
-            <h1>Ustawienia użytkownika</h1>
-            <h2>Zamówienia</h2>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Status</th>
-                    <th>Data</th>
-                </tr>
-                <?php
-                    $query = "SELECT * FROM orders WHERE user_id IN (SELECT user_id FROM users WHERE login='".$_SESSION['zalogowany']."')";
-                    $result = $conn->query($query);
-
-                    while($row = $result->fetch_object()){
-                        echo "
-                        <tr>
-                            <td>".$row->order_id."</td>
-                            <td>".$row->status."</td>
-                            <td>".$row->data."</td>
-                        <tr>
-                        ";
-                    }
-                ?>
-            </table>
+            <h1>Koszyk</h1>
         </div>
     </div>
 </body>

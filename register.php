@@ -43,7 +43,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D&D Cave</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <div id="border">
@@ -61,12 +61,14 @@
                         $row = $result->fetch_object();
                         if($row->admin == 1){
                             echo "<div class='dropdown-content'>
+                            <a href='koszyk.php'>Koszyk</a>
                             <a href='uzytkownik.php'>Ustawienia użytkownika</a>
                             <a href='admin.php'>Panel administracyjny</a>
                             <a href='wyloguj.php'>Wyloguj</a>
                             </div>";
                         } else {
                             echo "<div class='dropdown-content'>
+                            <a href='koszyk.php'>Koszyk</a>
                             <a href='uzytkownik.php'>Ustawienia użytkownika</a>
                             <a href='wyloguj.php'>Wyloguj</a>
                             </div>";

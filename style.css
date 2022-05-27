@@ -94,3 +94,11 @@ th {
 form{
     text-align: center;
 }
+
+.product{
+    margin-bottom: 5px;
+}
+.product button{
+    width: 200px;
+    float:right;
+}
