@@ -1,17 +1,7 @@
 <?php
-
+    $conn = new mysqli("localhost", "root", "", "sklep3ptp");
     session_start();
-
-    if(!isset($_SESSION["zalogowany"])) {
-        header("Location: login.php");
-        exit();
-    } else {
-        unset($_SESSION["zalogowany"]);
-        session_destroy();
-    }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +12,8 @@
     <title>D&D Cave</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
-<body><div id="border">
+<body>
+    <div id="border">
         <div id="site">
             <ul>
                 <li><a href="glowna.php">Główna</a></li>
@@ -58,8 +49,12 @@
 
                 </li>
             </ul>
-            <h1>Nastąpiło wylofowanie</h1>
-            <a href="glowna.php">Strona główna</a>
+            <h1>Zamów</h1>
+            <form action="uzytkownik.php" method="POST">
+                <h2>Adres</h2>
+                <input type="text" name="adress"></br>
+                <input type="submit" value="zamów">
+            </form>
         </div>
     </div>
 </body>

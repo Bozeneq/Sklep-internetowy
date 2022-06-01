@@ -31,7 +31,7 @@
                     
                     if(isset($_SESSION["zalogowany"])){
                         echo "<a href='uzytkownik.php' class='dropbtn'>Zalogowano jako ".$_SESSION["zalogowany"]."</a>"; 
-                        $query = "SELECT admin FROM users WHERE name = '".$_SESSION["zalogowany"]."'";
+                        $query = "SELECT admin FROM users WHERE login = '".$_SESSION["zalogowany"]."'";
                         $result = $conn->query($query);
                         $row = $result->fetch_object();
                         if($row->admin == 1){
@@ -65,11 +65,12 @@
                     $query = "SELECT * FROM product_cat LEFT JOIN products USING(product_id) WHERE category_id = ".$_GET['category'];
                     $result = $conn->query($query);
                     while($row = $result->fetch_object()){
-                        echo "<table class='product'>
+                        echo "<form action='koszyk.php' method='POST' id='".$row->product_id."'></form>
+                        <table class='product'>
                             <tr>
                                 <td><h2>".$row->product."</h2></td>
                                 <td></td>
-                                <td><button>Do koszyka</button></td>
+                                <td><button form='".$row->product_id."' value='".$row->product_id."' name='add'>Do koszyka</button></td>
                             </tr>
                             <tr>
                                 <td><h3>".$row->price."zł</h3></td>
@@ -86,11 +87,12 @@
                     $query = "SELECT * FROM products";
                     $result = $conn->query($query);
                     while($row = $result->fetch_object()){
-                        echo "<table class='product'>
+                        echo "<form action='koszyk.php' method='POST' id='".$row->product_id."'></form>
+                        <table class='product'>
                             <tr>
                                 <td><h2>".$row->product."</h2></td>
                                 <td></td>
-                                <td><button>Do koszyka</button></td>
+                                <td><button form='".$row->product_id."' value='".$row->product_id."' name='add'>Do koszyka</button></td>
                             </tr>
                             <tr>
                                 <td><h3>".$row->price."zł</h3></td>

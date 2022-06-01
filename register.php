@@ -27,6 +27,8 @@
         if($check != 0){
             if ($conn->query($query) === TRUE) {
                 echo "Zarejestrowano";
+                header("Location: zaloguj.php");
+                exit();
             } else {
                 echo "Error: " . $query . "<br>" . $conn->error;
             }
@@ -56,7 +58,7 @@
                     
                     if(isset($_SESSION["zalogowany"])){
                         echo "<a href='uzytkownik.php' class='dropbtn'>Zalogowano jako ".$_SESSION["zalogowany"]."</a>"; 
-                        $query = "SELECT admin FROM users WHERE name = '".$_SESSION["zalogowany"]."'";
+                        $query = "SELECT admin FROM users WHERE login = '".$_SESSION["zalogowany"]."'";
                         $result = $conn->query($query);
                         $row = $result->fetch_object();
                         if($row->admin == 1){

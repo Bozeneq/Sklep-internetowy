@@ -46,6 +46,7 @@
 </head>
 <body>
     <div id="border">
+        <div id="site">
             <ul>
                 <li><a href="glowna.php">Główna</a></li>
                 <li id="loged">
@@ -74,6 +75,7 @@
             <h3><a href="register.php">Zarejestruj</a></h3>
             <h3><a href="glowna.php">Strona główna</a></h3>
             <?php if(isset($_SESSION["info"])) { echo $_SESSION["info"]; } ?>
+        </div>
     </div>
 </body>
 </html>
