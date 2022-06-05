@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Cze 2022, 21:12
+-- Czas generowania: 06 Cze 2022, 01:20
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `sklep3ptp`
 --
+CREATE DATABASE IF NOT EXISTS `sklep3ptp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci;
+USE `sklep3ptp`;
 
 -- --------------------------------------------------------
 
